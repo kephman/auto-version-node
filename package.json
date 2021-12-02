@@ -1,0 +1,24 @@
+{
+  "name": "auto-version-node",
+  "version": "1.0.0",
+  "description": "Github Action to auto-increment Node package version",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kephman/auto-version-node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kephman/auto-version-node/issues"
+  },
+  "homepage": "https://github.com/kephman/auto-version-node#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0"
+  }
+}
