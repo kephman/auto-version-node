@@ -8346,61 +8346,6 @@ module.exports = require("zlib");
 
 /***/ }),
 
-/***/ 6454:
-/***/ ((__webpack_module__, __unused_webpack___webpack_exports__, __nccwpck_require__) => {
-
-__nccwpck_require__.a(__webpack_module__, async (__webpack_handle_async_dependencies__) => {
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(3988);
-/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(3882);
-
-
-
-const MASTER = 'master';
-
-try {
-    const accessToken = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('access-token');
-    const branchName = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('branch-name');
-    const packageVersion = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('package-version');
-    const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
-
-    if (typeof accessToken !== 'string' || !accessToken.length) {
-        throw new Error('Parameter "access-token" is invalid.');
-    }
-
-    if (typeof branchName !== 'string' || !branchName.length || branchName === MASTER) {
-        throw new Error('Parameter "branch-name" is invalid.');
-    }
-
-    if (typeof owner !== 'string' || !owner.length) {
-        throw new Error('The "GITHUB_REPOSITORY" owner is invalid.');
-    }
-
-    if (typeof repo !== 'string' || !repo.length) {
-        throw new Error('The "GITHUB_REPOSITORY" repo is invalid.');
-    }
-
-    const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(accessToken);
-
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`Owner: ${owner} | Repo: ${repo}`);
-
-    await octokit.rest.pulls.create({
-        owner,
-        repo,
-        head: branchName,
-        base: MASTER,
-        title: `Automated version update: ${packageVersion}`
-    });
-
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.info('Pull Request created!');
-} catch (error) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
-}
-
-__webpack_handle_async_dependencies__();
-}, 1);
-
-/***/ }),
-
 /***/ 2020:
 /***/ ((module) => {
 
@@ -8441,89 +8386,63 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ }
 /******/ 
 /************************************************************************/
-/******/ /* webpack/runtime/async module */
-/******/ (() => {
-/******/ 	var webpackThen = typeof Symbol === "function" ? Symbol("webpack then") : "__webpack_then__";
-/******/ 	var webpackExports = typeof Symbol === "function" ? Symbol("webpack exports") : "__webpack_exports__";
-/******/ 	var completeQueue = (queue) => {
-/******/ 		if(queue) {
-/******/ 			queue.forEach((fn) => (fn.r--));
-/******/ 			queue.forEach((fn) => (fn.r-- ? fn.r++ : fn()));
-/******/ 		}
-/******/ 	}
-/******/ 	var completeFunction = (fn) => (!--fn.r && fn());
-/******/ 	var queueFunction = (queue, fn) => (queue ? queue.push(fn) : completeFunction(fn));
-/******/ 	var wrapDeps = (deps) => (deps.map((dep) => {
-/******/ 		if(dep !== null && typeof dep === "object") {
-/******/ 			if(dep[webpackThen]) return dep;
-/******/ 			if(dep.then) {
-/******/ 				var queue = [];
-/******/ 				dep.then((r) => {
-/******/ 					obj[webpackExports] = r;
-/******/ 					completeQueue(queue);
-/******/ 					queue = 0;
-/******/ 				});
-/******/ 				var obj = {};
-/******/ 											obj[webpackThen] = (fn, reject) => (queueFunction(queue, fn), dep['catch'](reject));
-/******/ 				return obj;
-/******/ 			}
-/******/ 		}
-/******/ 		var ret = {};
-/******/ 							ret[webpackThen] = (fn) => (completeFunction(fn));
-/******/ 							ret[webpackExports] = dep;
-/******/ 							return ret;
-/******/ 	}));
-/******/ 	__nccwpck_require__.a = (module, body, hasAwait) => {
-/******/ 		var queue = hasAwait && [];
-/******/ 		var exports = module.exports;
-/******/ 		var currentDeps;
-/******/ 		var outerResolve;
-/******/ 		var reject;
-/******/ 		var isEvaluating = true;
-/******/ 		var nested = false;
-/******/ 		var whenAll = (deps, onResolve, onReject) => {
-/******/ 			if (nested) return;
-/******/ 			nested = true;
-/******/ 			onResolve.r += deps.length;
-/******/ 			deps.map((dep, i) => (dep[webpackThen](onResolve, onReject)));
-/******/ 			nested = false;
-/******/ 		};
-/******/ 		var promise = new Promise((resolve, rej) => {
-/******/ 			reject = rej;
-/******/ 			outerResolve = () => (resolve(exports), completeQueue(queue), queue = 0);
-/******/ 		});
-/******/ 		promise[webpackExports] = exports;
-/******/ 		promise[webpackThen] = (fn, rejectFn) => {
-/******/ 			if (isEvaluating) { return completeFunction(fn); }
-/******/ 			if (currentDeps) whenAll(currentDeps, fn, rejectFn);
-/******/ 			queueFunction(queue, fn);
-/******/ 			promise['catch'](rejectFn);
-/******/ 		};
-/******/ 		module.exports = promise;
-/******/ 		body((deps) => {
-/******/ 			if(!deps) return outerResolve();
-/******/ 			currentDeps = wrapDeps(deps);
-/******/ 			var fn, result;
-/******/ 			var promise = new Promise((resolve, reject) => {
-/******/ 				fn = () => (resolve(result = currentDeps.map((d) => (d[webpackExports]))));
-/******/ 				fn.r = 0;
-/******/ 				whenAll(currentDeps, fn, reject);
-/******/ 			});
-/******/ 			return fn.r ? promise : result;
-/******/ 		}).then(outerResolve, reject);
-/******/ 		isEvaluating = false;
-/******/ 	};
-/******/ })();
-/******/ 
 /******/ /* webpack/runtime/compat */
 /******/ 
 /******/ if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = new URL('.', import.meta.url).pathname.slice(import.meta.url.match(/^file:\/\/\/\w:/) ? 1 : 0, -1) + "/";
 /******/ 
 /************************************************************************/
-/******/ 
-/******/ // startup
-/******/ // Load entry module and return exports
-/******/ // This entry module used 'module' so it can't be inlined
-/******/ var __webpack_exports__ = __nccwpck_require__(6454);
-/******/ __webpack_exports__ = await __webpack_exports__;
-/******/ 
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(3988);
+/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(3882);
+
+
+
+const MASTER = 'master';
+
+async function run() {
+    try {
+        const accessToken = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('access-token');
+        const branchName = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('branch-name');
+        const packageVersion = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('package-version');
+        const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+
+        if (typeof accessToken !== 'string' || !accessToken.length) {
+            throw new Error('Parameter "access-token" is invalid.');
+        }
+
+        if (typeof branchName !== 'string' || !branchName.length || branchName === MASTER) {
+            throw new Error('Parameter "branch-name" is invalid.');
+        }
+
+        if (typeof owner !== 'string' || !owner.length) {
+            throw new Error('The "GITHUB_REPOSITORY" owner is invalid.');
+        }
+
+        if (typeof repo !== 'string' || !repo.length) {
+            throw new Error('The "GITHUB_REPOSITORY" repo is invalid.');
+        }
+
+        const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(accessToken);
+
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`Owner: ${owner} | Repo: ${repo}`);
+
+        await octokit.rest.pulls.create({
+            owner,
+            repo,
+            head: branchName,
+            base: MASTER,
+            title: `Automated version update: ${packageVersion}`
+        });
+
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info('Pull Request created!');
+    } catch (error) {
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
+    }
+}
+
+run();
+
+})();
+
