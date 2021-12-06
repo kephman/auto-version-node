@@ -2,7 +2,7 @@
 Github Action to auto-increment Node package version
 
 # How To Build This Repo
-The following are notes taken from: [link](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action "https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action")
+The following are notes taken from: [https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action "https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action")
 
 Checking in the `node_modules` directory can cause problems. This repo uses a tool called `@vercel/ncc` to compile the modules into one file, used for distribution.
 
@@ -17,6 +17,6 @@ The compiled output will be in `dist/` along with the accompanying `dist/license
 3. Make sure the `main` paremter in `action.yml` is pointed to `dist/index.js` file: `main: 'dist/index.js'`
 
 4. Commit the updates and tag the repo:
-`git commit -am "FEAT: New Changes"
-git tag -am "New Changes Made" v1.1
-git push --follow-tags`
+`git commit -am "FEAT: New Changes"`
+`git tag -am "New Changes Made" v1.1`
+`git push --follow-tags`
