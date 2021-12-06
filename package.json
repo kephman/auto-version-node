@@ -1,9 +1,10 @@
 {
   "name": "auto-version-node",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Github Action to auto-increment Node package version",
   "main": "index.js",
   "scripts": {
+    "build": "ncc build index.js --license licenses.txt",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
