@@ -1,6 +1,6 @@
 {
   "name": "auto-version-node",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Github Action to auto-increment Node package version",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/kephman/auto-version-node.git"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",

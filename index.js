@@ -1,5 +1,5 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
+import core from '@actions/core';
+import github from '@actions/github';
 
 const MASTER = 'master';
 
@@ -29,13 +29,15 @@ try {
 
     core.info(`Owner: ${owner} | Repo: ${repo}`);
 
-    octokit.rest.pulls.create({
+    await octokit.rest.pulls.create({
         owner,
         repo,
         head: branchName,
         base: MASTER,
         title: `Automated version update: ${packageVersion}`
     });
+
+    core.info('Pull Request created!');
 } catch (error) {
     core.setFailed(error.message);
 }
