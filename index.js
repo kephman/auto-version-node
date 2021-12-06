@@ -34,6 +34,7 @@ try {
         repo,
         head: branchName,
         base: MASTER,
+        title: `Automated version update: ${packageVersion}`
     });
 } catch (error) {
     core.setFailed(error.message);
