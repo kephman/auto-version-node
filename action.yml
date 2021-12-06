@@ -1,13 +1,16 @@
 name: 'auto-version-node'
 description: 'Github Action to auto-increment Node package version'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  access-token:  # Repo access token
+    description: 'GitHub Repo access token'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  branch-name:  # Feature branch to use
+    description: 'The name of the branch'
+    required: true
+  package-version:  # Package version updating to
+    description: 'The package version updating to'
+    required: false
+    default: 'Unknown'
 runs:
   using: 'node12'
   main: 'dist/index.js'
